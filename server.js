@@ -4,8 +4,9 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const db = require('./db'); // mysql2 pool
 require('dotenv').config();
-
 const app = express();
+
+
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -16,19 +17,18 @@ app.use(session({
   saveUninitialized: false,
   cookie: { secure: false } // true if using HTTPS
 }));
-
-// Serve static files (CSS, JS, images) if needed
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ✅ Serve login form at /
+
+//
 app.get('/', (req, res) => {
-  // If user already logged in, redirect to dashboard
   if (req.session.user) {
     return res.redirect('/dashboard');
   }
 
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
+
 
 // Login route
 app.post('/login', async (req, res) => {
@@ -47,7 +47,7 @@ app.post('/login', async (req, res) => {
 
     if (!match) return res.redirect("/");
 
-    // Save metadata in session
+
     req.session.user = {
       id: user.id,
       username: user.username,
@@ -62,6 +62,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
+
 // Dashboard route
 app.get('/dashboard', (req, res) => {
   if (!req.session.user) {
@@ -69,8 +70,9 @@ app.get('/dashboard', (req, res) => {
     return res.redirect('/');
   }
 
-  res.send(`Welcome ${req.session.user.username}!`);
+  res.sendFile(path.join(__dirname,'views','dashboard.html'));
 });
+
 
 // Logout route
 app.get('/logout', (req, res) => {
