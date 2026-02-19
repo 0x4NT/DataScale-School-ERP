@@ -26,49 +26,113 @@ body {
 
 /* Sidebar */
 .sidebar {
-    width: 250px;
+    width: 60px;
     background: #0f5c73;
     color: white;
-    padding: 20px;
+    transition: width 0.3s;
+    overflow: hidden;
+}
+
+.sidebar:hover,
+.sidebar.active {
+    width: 250px;
 }
 
 .logo {
     display: flex;
     align-items: center;
     margin-bottom: 40px;
+    padding: 0 10px;
 }
 
-.logo-icon {
-    width: 15px;
-    height: 15px;
-    background: #f25c86;
-    margin-right: 10px;
+.logo h2 {
+    margin-left: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.sidebar:hover .logo h2,
+.sidebar.active .logo h2 {
+    opacity: 1;
 }
 
 .sidebar nav ul {
     list-style: none;
+    padding-left: 0;
 }
 
 .sidebar nav ul li {
-    padding: 12px 0;
     cursor: pointer;
-    font-size: 14px;
-    opacity: 0.9;
+    padding: 12px 10px;
+    display: flex;
+    align-items: center;
 }
 
-.sidebar nav ul li:hover,
-.sidebar nav ul li.active {
-    font-weight: 600;
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.sidebar nav ul li a .icon {
+    font-size: 18px;
+    width: 30px;
+}
+
+.sidebar nav ul li a .title {
+    margin-left: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.sidebar:hover .sidebar-menu li a .title,
+.sidebar.active .sidebar-menu li a .title {
     opacity: 1;
 }
 
-/* Main Content */
+.sidebar nav ul li.active {
+    background: #144d5d;
+    border-radius: 4px;
+}
+
+/* Submenu */
+.submenu {
+    width: 200px;
+    background: #144d5d;
+    color: white;
+    padding: 20px;
+    display: none;
+}
+
+.submenu.active {
+    display: block;
+}
+
+.submenu-list {
+    list-style: none;
+}
+
+.submenu-list li {
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.submenu-list li:hover {
+    font-weight: 600;
+}
+
+/* Main content */
 .main-content {
     flex: 1;
     padding: 20px 30px;
+    overflow-y: auto;
 }
 
-/* Topbar */
+/* Topbar inside main content */
 .topbar {
     display: flex;
     justify-content: space-between;

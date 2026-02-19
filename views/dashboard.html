@@ -22,63 +22,42 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="logo">
-            <span class="logo-icon"></span>
+            <span class="logo-icon">🅰</span>
             <h2>Antontech</h2>
         </div>
 
         <nav>
-            <ul>
-                <li class="active">Dashboard</li>
-                <li>Student Academics</li>
-                <li>Human Resource</li>
-                <li>Work Flow Management</li>
+            <ul class="sidebar-menu">
+                <li class="active" data-category="Dashboard">
+                    <a href="#"><span class="icon">🏠</span><span class="title">Dashboard</span></a>
+                </li>
+                <li data-category="Student Academics">
+                    <a href="#"><span class="icon">📚</span><span class="title">Student Academics</span></a>
+                </li>
+                <li data-category="Human Resource">
+                    <a href="#"><span class="icon">👥</span><span class="title">Human Resource</span></a>
+                </li>
+                <li data-category="Work Flow Management">
+                    <a href="#"><span class="icon">⚙️</span><span class="title">Work Flow Management</span></a>
+                </li>
             </ul>
         </nav>
     </aside>
 
+    <!-- Submenu -->
+    <aside class="submenu">
+        <ul class="submenu-list">
+            <!-- JS populates this -->
+        </ul>
+    </aside>
+
     <!-- Main Content -->
     <main class="main-content">
-
-        <!-- Top Bar -->
-        <div class="topbar">
-            <h3>Kenya Christian Industrial Training Institute</h3>
-            <div class="profile">
-                <div class="icon-circle"></div>
-                <div class="avatar"></div>
-            </div>
-        </div>
-
-        <!-- Dashboard Cards -->
-        <div class="dashboard-cards">
-
-            <div class="card">
-                <h4>Staff Population</h4>
-                <div class="big-number">52</div>
-                <div class="small-stats">
-                    <span class="female">Female: 23</span>
-                    <span class="others">Others: 0</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <h4>Staff Population per Departments</h4>
-                <div class="chart-placeholder">
-                    Bar Chart Area
-                </div>
-            </div>
-
-            <div class="card">
-                <h4>Staff Population per Category</h4>
-                <div class="chart-placeholder">
-                    Pie Chart Area
-                </div>
-            </div>
-
-        </div>
-
+        <!-- JS will inject dynamic content here -->
     </main>
 
 </div>
 
+<script src="dashboard.js"></script>
 </body>
 </html>
