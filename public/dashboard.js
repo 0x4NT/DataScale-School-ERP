@@ -15,8 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Content for each submenu
     const contentMap = {
-        'Overview': `<div class="topbar"><h3>Dashboard Overview</h3></div><p>Overview content goes here.</p>`,
-        'Reports': `<div class="topbar"><h3>Dashboard Reports</h3></div><p>Reports content goes here.</p>`,
+        'Overview': async () => {
+                        const response = await fetch('/overview');
+                        return await response.text();
+                    },
+        'Reports': async () => {
+                        const response = await fetch('/reports');
+                        return await response.text();
+                    },
         'Statistics': `<div class="topbar"><h3>Dashboard Statistics</h3></div><p>Statistics content goes here.</p>`,
 
         'Enrollments': `<div class="topbar"><h3>Student Enrollments</h3></div><p>Enrollment data here.</p>`,
@@ -40,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
             li.textContent = sub;
             submenuList.appendChild(li);
 
-            // Click on submenu item updates main content
-            li.addEventListener('click', () => {
-                mainContent.innerHTML = contentMap[sub] || `<p>Content not found</p>`;
+            // Click on submenu item updates sub-content
+            li.addEventListener('click', async () => {
+                mainContent.innerHTML = await contentMap[sub]() || `<p>Content not found</p>`;
 
                 // Highlight the selected submenu item
                 submenuList.querySelectorAll('li').forEach(i => i.classList.remove('active'));
