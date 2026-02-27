@@ -93,8 +93,8 @@ app.get('/overview', (req, res) => {
         res.send(data); // send as text
     });
 });
-app.get('/reports', (req, res) => {
-    const filePath = path.join(__dirname, 'views/sub_content', 'reports.html');
+app.get('/courseRegistration', (req, res) => {
+    const filePath = path.join(__dirname, 'views/sub_content', 'courseRegistration.html');
 
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {

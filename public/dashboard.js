@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Submenu items for each category
     const submenus = {
-        'Dashboard': ['Overview', 'Reports', 'Statistics'],
-        'Student Academics': ['Enrollments', 'Grades', 'Attendance'],
-        'Human Resource': ['Staff List', 'Leaves', 'Recruitment'],
-        'Work Flow Management': ['Tasks', 'Processes', 'Approval']
+        'Dashboard': ['Overview'],
+        'Student Academics': ['Course Registration', 'Finance Information'],
+        'Personel Management': ['Leave Management', 'Class Attendance'],
+        'Forum': ['General', 'Notice Board'],
+        'Setting': ['Profile Management'],
+        'Logout':['']
     };
 
     // Content for each submenu
@@ -19,23 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const response = await fetch('/overview');
                         return await response.text();
                     },
-        'Reports': async () => {
-                        const response = await fetch('/reports');
+        'Course Registration': async () => {
+                        const response = await fetch('/courseRegistration');
                         return await response.text();
-                    },
-        'Statistics': `<div class="topbar"><h3>Dashboard Statistics</h3></div><p>Statistics content goes here.</p>`,
-
-        'Enrollments': `<div class="topbar"><h3>Student Enrollments</h3></div><p>Enrollment data here.</p>`,
-        'Grades': `<div class="topbar"><h3>Student Grades</h3></div><p>Grades content here.</p>`,
-        'Attendance': `<div class="topbar"><h3>Student Attendance</h3></div><p>Attendance content here.</p>`,
-
-        'Staff List': `<div class="topbar"><h3>Staff List</h3></div><p>Staff List content here.</p>`,
-        'Leaves': `<div class="topbar"><h3>Staff Leaves</h3></div><p>Leaves content here.</p>`,
-        'Recruitment': `<div class="topbar"><h3>Recruitment</h3></div><p>Recruitment content here.</p>`,
-
-        'Tasks': `<div class="topbar"><h3>Tasks</h3></div><p>Tasks content here.</p>`,
-        'Processes': `<div class="topbar"><h3>Processes</h3></div><p>Processes content here.</p>`,
-        'Approval': `<div class="topbar"><h3>Approval</h3></div><p>Approval content here.</p>`
+                    }
     };
 
     // Function to populate submenu when a sidebar category is clicked
