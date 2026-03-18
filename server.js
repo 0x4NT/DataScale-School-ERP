@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const db = require('./db'); // mysql2 pool
@@ -20,7 +21,8 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-//
+/* ----------------------------------------------------    MAIN ROUTES   -------------------------------------------
+ */
 app.get('/', (req, res) => {
   if (req.session.user) {
     return res.redirect('/dashboard');
@@ -28,7 +30,6 @@ app.get('/', (req, res) => {
 
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
-
 
 // Login route
 app.post('/login', async (req, res) => {
@@ -62,7 +63,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
 // Dashboard route
 app.get('/dashboard', (req, res) => {
   if (!req.session.user) {
@@ -73,12 +73,36 @@ app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname,'views','dashboard.html'));
 });
 
-
 // Logout route
 app.get('/logout', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');
   });
+});
+
+/* ----------------------------------------------------    SUBCONTENT ROUTES   -------------------------------------------
+ */
+app.get('/overview', (req, res) => {
+    const filePath = path.join(__dirname, 'views/sub_content', 'overview.html');
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).send('Error loading file');
+        }
+
+        res.send(data); // send as text
+    });
+});
+app.get('/courseRegistration', (req, res) => {
+    const filePath = path.join(__dirname, 'views/sub_content', 'courseRegistration.html');
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).send('Error loading file');
+        }
+
+        res.send(data); // send as text
+    });
 });
 
 app.listen(3000, () => console.log('Server running on port 3000'));
